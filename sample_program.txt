@@ -1,0 +1,56 @@
+a = 10
+b = 34
+c = a + b        # c = 44
+d = a * (b + c)  # d = 780
+
+console:
+a = 10
+b = 34
+
+---
+
+symbol_table = [["+", AddOperator], ["-", SubOperator], ["*", MultOperator],
+                ["/", DivOperator], ["**", PowOperator], ["%", ModOperator],
+                ["abs", AbsOperator], ["sqrt", SqrtOperator]]
+
+evaluate("a = 10") : "a", 10
+    tokenize("a = 10") : "a", [10]
+        dest_symbol = "a"
+        token = 10
+        expr = [10]
+    dest_symbol = "a"
+    expr = [10]
+    reduce([10]) : 10
+        expr = []
+        token = 10
+        stack = [10]
+        stack = []
+    value = 10
+    symbol_table = [["+", AddOperator], ["-", SubOperator], ["*", MultOperator],
+                    ["/", DivOperator], ["**", PowOperator], ["%", ModOperator],
+                    ["abs", AbsOperator], ["sqrt", SqrtOperator],
+                    ["a", 10]]
+
+evaluate("b = 34") : "b", 34
+    tokenize("b = 34") : "b", [34]
+        dest_symbol = "b"
+        token = 34
+        expr = [34]
+    dest_symbol = "b"
+    expr = [34]
+    reduce([34]) : 34
+        expr = []
+        token = 34
+        stack = [34]
+        stack = []
+    value = 34
+    symbol_table = [["+", AddOperator], ["-", SubOperator], ["*", MultOperator],
+                    ["/", DivOperator], ["**", PowOperator], ["%", ModOperator],
+                    ["abs", AbsOperator], ["sqrt", SqrtOperator],
+                    ["a", 10], ["b", 34]]
+
+evaluate("c = a + b")
+    tokenize("c = a + b")
+        dest_symbol = "c"
+        token = 10
+        expr = [10]

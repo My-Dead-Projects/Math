@@ -1,0 +1,91 @@
+class Evaluator
+    (+) init()
+    (-) symbol_table : unordered_map<string, Token>
+    (-) tokenize(string) : string, PostfixExpression
+    (-) reduce(Expression) : number
+    (+) evaluate(string) : string, number
+
+class Expression
+    *** Expression inherits from Queue<Token>
+
+class PostfixExpression
+    *** PostfixExpression inherits from Expression
+
+class Token
+
+class Operand
+    *** Operand is a number
+    *** Operand inherits from Token
+
+class Operator
+    (-) prec : integer
+    (+) precedence() : integer
+    *** Operator inherits from Token
+
+
+class UnaryOperator
+    (+) operate(Operand) : Operand --virtual
+    *** UnaryOperator inherits from Operator
+
+class BinaryOperator
+    (+) operate(Operand, Operand) : Operand --virtal
+    *** BinaryOperator inherits from Operator
+
+
+class AbsOperator
+    (+) operate(Operand) : Operand
+    *** AbsOperator inherits from UnaryOperator
+
+class SqrtOperator
+    (+) operate(Operand) : Operand
+    *** SqrtOperator inherits from UnaryOperator
+
+class AddOperator
+    (+) operate(Operand, Operand) : Operand
+    *** AddOperator inherits from BinaryOperator
+
+class SubOperator
+    (+) operate(Operand, Operand) : Operand
+    *** SubOperator inherits from BinaryOperator
+
+class MultOperator
+    (+) operate(Operand, Operand) : Operand
+    *** MultOperator inherits from BinaryOperator
+
+class DivOperator
+    (+) operate(Operand, Operand) : Operand
+    *** DivOperator inherits from BinaryOperator
+
+class PowOperator
+    (+) operate(Operand, Operand) : Operand
+    *** PowOperator inherits from BinaryOperator
+
+class ModOperator
+    (+) operate(Operand, Operand) : Operand
+    *** ModOperator inherits from BinaryOperator
+
+
+
+class unordered_map <type Key, type Value>
+    (+) insert(Key, Value)
+    (+) find(Key) : Value
+    *** unordered_set is a collection of Key
+
+class Queue <type T>
+    (-) data : T[]
+    (+) enqueue(T)
+    (+) dequeue() : T
+    (+) is_empty() : bool
+    *** queue is a collection of T
+
+class Stack <type T>
+    (-) data : T[]
+    (+) push(T)
+    (+) pop() : T
+    (+) top() : T
+    (+) is_empty() : bool
+    *** Stack is a collection of T
+
+class UndefinedSymbolError
+
+class SyntaxError
