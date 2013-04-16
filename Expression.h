@@ -5,7 +5,6 @@
 #include <stack>
 #include <string>
 using std::string;
-using std::move;
 
 // Token is a string
 typedef std::string Token;
@@ -86,7 +85,7 @@ public:
             }
             if (!symbol.size()) break;
             symbol_start += symbol.size();
-            push(move(symbol));
+            push(symbol);
         }
     }
 };
@@ -113,18 +112,18 @@ public:
                 while (!op_stack.empty() and
                        priority(op_stack.top()) >
                        priority(expr.front())) {
-                    push(move(op_stack.top()));
+                    push(op_stack.top());
                     op_stack.pop();
                 }
-                op_stack.push(move(expr.front()));
+                op_stack.push(expr.front());
                 expr.pop();
             } else {
-                push(move(expr.front()));
+                push(expr.front());
                 expr.pop();
             }
         }
         while (!op_stack.empty()) {
-            push(move(op_stack.top()));
+            push(op_stack.top());
             op_stack.pop();
         }
 
