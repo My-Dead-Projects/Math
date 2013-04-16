@@ -7,11 +7,13 @@ using std::cout;
 using std::endl;
 
 void Expression_test() {
-    Postfix expr;
-    expr.parse("c = a + b");
-    while (!expr.empty()) {
-        cout<<expr.front()<<endl;
-        expr.pop();
+    InfixExpression infix;
+    infix.parse("d = a * b + c / a");
+    PostfixExpression postfix(infix);
+    cout<<"Postfix:"<<endl;
+    while (!postfix.empty()) {
+        cout<<postfix.front()<<endl;
+        postfix.pop();
     }
 }
 
