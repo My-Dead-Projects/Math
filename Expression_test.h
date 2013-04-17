@@ -8,9 +8,8 @@ using std::endl;
 
 void Expression_test() {
     InfixExpression infix;
-    infix.parse("d = a * b + c / a");
+    infix.parse("y = a + (b + c) / ((d + 2) * 3) - 3 - 7 - (4 - 1)");
     PostfixExpression postfix(infix);
-    cout<<"Postfix:"<<endl;
     while (!postfix.empty()) {
         cout<<postfix.front()<<endl;
         postfix.pop();

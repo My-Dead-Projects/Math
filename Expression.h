@@ -32,7 +32,9 @@ protected:
         return special;
     }
     short priority(Operator s) {
-        if (s == "=" or s == "(")
+        if (s == "(" or s == ")")
+            return -1;
+        if (s == "=")
             return 0;
         if (s == "+" or s == "-")
             return 2;
@@ -45,8 +47,8 @@ protected:
         throw s;
     }
     bool is_operator(Token t) {
-        if (t=="="||t=="("||t=="+"||t=="-"||t=="*"||t=="/"||
-            t=="abs"||t=="sqrt"||t=="sin"||t=="cos")
+        if (t=="="||t=="+"||t=="-"||t=="*"||t=="("||t==")"||
+            t=="/"||t=="abs"||t=="sqrt"||t=="sin"||t=="cos")
             return true;
         else
             return false;
@@ -110,13 +112,21 @@ public:
         while (!expr.empty()) {
             if (is_operator(expr.front())) {
                 while (!op_stack.empty() and
-                       priority(op_stack.top()) >
+                       op_stack.top() != "(" and
+                       expr.front() != "(" and
+                       priority(op_stack.top()) >=
                        priority(expr.front())) {
                     push(op_stack.top());
                     op_stack.pop();
                 }
-                op_stack.push(expr.front());
-                expr.pop();
+                if (!op_stack.empty() and
+                    op_stack.top() == "(" and expr.front() == ")") {
+                    op_stack.pop();
+                    expr.pop();
+                } else {
+                    op_stack.push(expr.front());
+                    expr.pop();
+                }
             } else {
                 push(expr.front());
                 expr.pop();
