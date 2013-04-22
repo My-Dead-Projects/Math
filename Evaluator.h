@@ -67,7 +67,9 @@ public:
                 if (expr.front() == "+" or
                     expr.front() == "-" or
                     expr.front() == "*" or
-                    expr.front() == "/")
+                    expr.front() == "/" or
+                    expr.front() == "%" or
+                    expr.front() == "^")
                 {
                     if (!stack.size() >= 2) throw SyntaxError();
                     Double lval = stack.top();
@@ -77,7 +79,9 @@ public:
                     if (expr.front() == "+") stack.push(rval+lval); else
                     if (expr.front() == "-") stack.push(rval-lval); else
                     if (expr.front() == "*") stack.push(rval*lval); else
-                    if (expr.front() == "/") stack.push(rval/lval);
+                    if (expr.front() == "/") stack.push(rval/lval); else
+                    if (expr.front() == "%") stack.push(rval%lval); else
+                    if (expr.front() == "^") stack.push(pow(rval, lval));
                 }
                 if (expr.front() == "abs" or
                     expr.front() == "sqrt" or

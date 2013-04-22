@@ -38,17 +38,19 @@ public:
             return 0;
         if (s == "+" or s == "-")
             return 2;
-        if (s == "*" or s == "/")
+        if (s == "*" or s == "/" or s == "%")
             return 3;
+        if (s == "^")
+            return 4;
         if (s == "abs" or s == "sqrt")
-            return 4;
+            return 5;
         if (s == "sin" or s == "cos")
-            return 4;
+            return 5;
         throw s;
     }
     static bool is_operator(Token t) {
-        if (t=="="||t=="+"||t=="-"||t=="*"||t=="("||t==")"||
-            t=="/"||t=="abs"||t=="sqrt"||t=="sin"||t=="cos")
+        if (t=="="||t=="+"||t=="-"||t=="*"||t=="("||t==")"||t=="^"||
+            t=="%"||t=="/"||t=="abs"||t=="sqrt"||t=="sin"||t=="cos")
             return true;
         else
             return false;
