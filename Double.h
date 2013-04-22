@@ -11,19 +11,17 @@ public:
     double operator=(double val) {
         return _value = val;
     }
+    double value()const { return _value; }
     Double(double val = 0) : _value(val) {}
-    friend bool operator==(const Double&, const Double&);
-    friend bool operator<=(const Double&, const Double&);
-    friend bool operator>=(const Double&, const Double&);
 };
 bool operator==(const Double& lhv, const Double& rhv) {
-    return lhv._value == rhv._value;
+    return lhv.value() == rhv.value();
 }
 bool operator<=(const Double& lhv, const Double& rhv) {
-    return lhv._value <= rhv._value;
+    return lhv.value() <= rhv.value();
 }
 bool operator>=(const Double& lhv, const Double& rhv) {
-    return lhv._value >= rhv._value;
+    return lhv.value() >= rhv.value();
 }
 bool operator!=(const Double& lhv, const Double& rhv) {
     return !(lhv == rhv);
@@ -34,18 +32,17 @@ bool operator>(const Double& lhv, const Double& rhv) {
 bool operator<(const Double& lhv, const Double& rhv) {
     return !(lhv >= rhv);
 }
-
-#include <assert.h>
-
-void Double_test() {
-    Double x = 5.7;
-    assert(x == 5.7);
-    assert(x < 6.5);
-    assert(x > 4.2);
-    assert(x >= 5.7);
-    assert(x >= 5.6);
-    assert(x <= 5.7);
-    assert(x <= 5.8);
+Double operator+(const Double& lhv, const Double& rhv) {
+    return lhv.value() + rhv.value();
+}
+Double operator-(const Double& lhv, const Double& rhv) {
+    return lhv.value() - rhv.value();
+}
+Double operator*(const Double& lhv, const Double& rhv) {
+    return lhv.value() * rhv.value();
+}
+Double operator/(const Double& lhv, const Double& rhv) {
+    return lhv.value() / rhv.value();
 }
 
 #endif

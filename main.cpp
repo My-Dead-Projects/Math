@@ -1,11 +1,30 @@
-#include "Expression_test.h"
-#include "Double.h"
-#include <iostream>
 
-int main(){
+#include "Evaluator.h"
+#include <iostream>
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+
+int main() {
     
-    Double_test();
-    Expression_test();
+    Evaluator eval;
+    
+    string input;
+    
+    cout<<"'exit' to quit"<<endl<<endl;
+    
+    while (true) {
+        cout<<"Enter expression: ";
+        std::getline(cin, input, '\n');
+        if (input == "exit") break;
+        try {
+            Object obj = eval.evaluate(input);
+            cout<<obj.symbol()<<" = "<<obj.value().value()<<endl;
+        } catch (Error error) {
+            cout<<error.message<<endl;
+        }
+    }
     
     return 0;
 }

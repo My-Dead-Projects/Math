@@ -15,14 +15,14 @@ typedef Token Operand;
 
 // Expression inherits Queue<Token>
 class Expression : public std::queue<Token> {
-protected:
+public:
     enum char_category_type {
         alphabetic = 0,
         numeric = 1,
         special = 2,
         whitespace = 3
     };
-    char_category_type char_category(const char& c) {
+    static char_category_type char_category(const char& c) {
         if ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z'))
             return alphabetic;
         if ((c >= '0' and c <= '9') or c == '.')
@@ -31,7 +31,7 @@ protected:
             return whitespace;
         return special;
     }
-    short priority(Operator s) {
+    static short priority(Operator s) {
         if (s == "(" or s == ")")
             return -1;
         if (s == "=")
@@ -46,14 +46,13 @@ protected:
             return 4;
         throw s;
     }
-    bool is_operator(Token t) {
+    static bool is_operator(Token t) {
         if (t=="="||t=="+"||t=="-"||t=="*"||t=="("||t==")"||
             t=="/"||t=="abs"||t=="sqrt"||t=="sin"||t=="cos")
             return true;
         else
             return false;
     }
-public:
     void clear() {
         while (!empty()) pop();
     }
