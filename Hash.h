@@ -27,6 +27,9 @@ public:
     UnorderedMap(size_t n = 1024) : table(n) {}
     
     void insert(Key key, Value value) {
+        try {
+            find(key) = value;
+        } catch (Key) {}
         table[hash(key)%table.size()].push_back(std::make_pair(key, value));
     }
     
