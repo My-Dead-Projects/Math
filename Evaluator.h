@@ -39,6 +39,17 @@ public:
 
 class Evaluator {
     
+    class HashForToken {
+    public:
+        size_t operator()(Token value) {
+            size_t hashcode = 0;
+            for (char c : value) {
+                hashcode += static_cast<size_t>(c);
+            }
+            return hashcode;
+        }
+    };
+    
     UnorderedMap<Token, Double, HashForToken> symbol_table;
     
 public:

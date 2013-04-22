@@ -5,17 +5,6 @@
 #include <vector>
 #include <utility>
 
-class HashForToken {
-public:
-    size_t operator()(Token value) {
-        size_t hashcode = 0;
-        for (char c : value) {
-            hashcode += static_cast<size_t>(c);
-        }
-        return hashcode;
-    }
-};
-
 template <class Key, class Value, class HashFunction>
 class UnorderedMap {
     
