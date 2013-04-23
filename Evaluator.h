@@ -50,7 +50,7 @@ class Evaluator {
         }
     };
     
-    UnorderedMap<Token, Double, HashForToken> symbol_table;
+    UnorderedMap<Token, number, HashForToken> symbol_table;
     
 public:
     
@@ -72,9 +72,9 @@ public:
                     expr.front() == "^")
                 {
                     if (!stack.size() >= 2) throw SyntaxError();
-                    Double lval = stack.top();
+                    number lval = stack.top();
                     stack.pop();
-                    Double rval = stack.top();
+                    number rval = stack.top();
                     stack.pop();
                     if (expr.front() == "+") stack.push(rval+lval); else
                     if (expr.front() == "-") stack.push(rval-lval); else
@@ -89,7 +89,7 @@ public:
                     expr.front() == "cos")
                 {
                     if (!stack.size() >= 1) throw SyntaxError();
-                    Double val = stack.top();
+                    number val = stack.top();
                     stack.pop();
                     if (expr.front() == "abs") stack.push(fabs(val.value())); else
                     if (expr.front() == "sqrt") stack.push(sqrt(val.value())); else

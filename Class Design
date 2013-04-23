@@ -1,0 +1,75 @@
+class UnorderedMap <type Key, type Value, type HashFunction>
+    (-) class KeyValuePair
+        (+) key : Key
+        (+) value : Value
+    (-) table : KeyValuePair[][]
+    (-) hash : HashFunction
+
+    (+) insert(Key, Value)
+    (+) find(Key) : Value
+    --- table is a collection of collections of KeyValuePair
+    --- HashFunction must have a method with the signature (+) call(Key) : number
+
+class Stack <type T>
+    (-) data : T[]
+    (+) push(T)
+    (+) top()
+    (+) pop()
+    (+) empty() : bool
+
+class Queue <type T>
+    (-) data : T[]
+    (+) push(T)
+    (+) front()
+    (+) pop()
+    (+) empty() : bool
+
+class Token
+    --- Token is a string
+
+class Operator
+    --- Operator is a Token
+
+class Operand
+    --- Operand is a Token
+
+class Expression
+    (+) enum char_category_type
+    (_) char_category(char) : char_category_type
+    (_) priority(Operator) : integer
+    (_) is_operator(Token) : bool
+    (+) clear()
+    --- Expression inherits Queue<Token>
+
+class InfixExpression
+    (+) parse(string)
+    --- InfixExpression inherits Expression
+
+class PostfixExpression
+    (+) parse(string)
+    (+) parse(InfixExpression)
+
+class Error
+    (+) message : string
+
+class UndefinedSymbolError
+    --- UndefinedSymbolError inherits Error
+
+class SyntaxError
+    --- SyntaxError inherits Error
+
+class Object
+    (-) _symbol : Token
+    (-) _value : number
+    (+) symbol() : token
+    (+) symbol(Token)
+    (+) value() : number
+    (+) value(number)
+
+class Evaluator
+    (-) class HashForToken
+        (+) call(Token) : integer
+    (-) symbol_table : UnorderedMap<Token, number, HashForToken>
+
+    (+) evaluate(string) : Object
+    (+) evaluate(PostfixExpression) : Object
