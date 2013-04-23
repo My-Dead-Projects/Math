@@ -60,7 +60,7 @@ public:
     
     Object evaluate(PostfixExpression expr) {
         Object result(expr.front(), 0);
-        std::stack<number> stack;
+        Stack<number> stack;
         expr.pop();
         while (!expr.empty()) {
             if (Expression::is_operator(expr.front())) {

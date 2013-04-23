@@ -1,8 +1,7 @@
 #ifndef Math_Expression_h
 #define Math_Expression_h
 
-#include <queue>
-#include <stack>
+#include "ListTypes.h"
 #include <string>
 using std::string;
 
@@ -14,7 +13,7 @@ typedef Token Operator;
 typedef Token Operand;
 
 // Expression inherits Queue<Token>
-class Expression : public std::queue<Token> {
+class Expression : public Queue<Token> {
 public:
     enum char_category_type {
         alphabetic = 0,
@@ -109,7 +108,7 @@ public:
         parse(infix);
     }
     void parse(InfixExpression expr) {
-        std::stack<Operator> op_stack;
+        Stack<Operator> op_stack;
         while (!expr.empty()) {
             if (is_operator(expr.front())) {
                 while (!op_stack.empty() and

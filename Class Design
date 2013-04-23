@@ -15,6 +15,7 @@ class Stack <type T>
     (+) push(T)
     (+) top()
     (+) pop()
+    (+) size() : integer
     (+) empty() : bool
 
 class Queue <type T>
@@ -22,6 +23,7 @@ class Queue <type T>
     (+) push(T)
     (+) front()
     (+) pop()
+    (+) size() : integer
     (+) empty() : bool
 
 class Token
